@@ -6,23 +6,11 @@
 # @author:  Momo Outaadi (M4ll0k)
 # @license: See the file 'LICENSE.txt'
 
-from urlparse import urlsplit
+from urlparse import urlsplit,urljoin
 from lib.utils.printer import *
 
 def CPath(url,path):
-	# URL --> site.com/ PATH --> /test/index.php
-	if url.endswith('/') and path.startswith('/'):
-		# return URL --> site.com/test/index.php
-		return "%s%s"%(url[:-1],path)
-	# URL --> site.com PATH --> test/index.php
-	elif not url.endswith('/') and not path.startswith('/'):
-		# return URL --> site.com/test.index.php
-		return "%s/%s"%(url,path)
-	# if URL --> site.com/ PATH --> test/index.php
-	# or URL --> site.com PATH --> /test/index.php
-	else:
-		# return URL --> site.com/test/index.php
-		return "%s%s"%(url,path)
+	return urljoin(url,path)
 
 
 def CUrl(url):
